@@ -210,7 +210,7 @@
 			
 				Cette question nous demande de critiquer les résultats obtenues lors de la question précédente. Plus particulièrement, on nous demande l'effet qu'a une augmentation du bruit au niveau de la classe. La Table \ref{tab-IBk-noise} nous permet de constater que cette augmentation réduit la précision du classificateur \textit{k-nearest neighbor} et ce peu importe la valeur du k.
 				
-			\subsection*{Question 17.2.8}
+				\subsubsection*{Question 17.2.8}
 				
 				Cette question s'intéresse plutôt aux effets qu'a la modification de la valeur de k pour le classificateur \textit{k-nearest neighbor}. Dans la Table \ref{tab-IBk-noise} nous remarquons qu'augmenter la valeur de k rend le modèle obtenu plus robuste au bruit.\\
 				
@@ -218,7 +218,7 @@
 				
 			\newpage
 				
-			\subsection*{Question 17.2.9}
+			\subsubsection*{Question 17.2.9}
 				Pour cette question, nous devons comparer les classificateurs \textit{IBk} et \textit{J48} en fonction du pourcentage de l'ensemble d'apprentissage utilisé. Ces résultats sont encodés dans la table suivante:
 			
 				\begin{table}[h]
@@ -251,6 +251,18 @@
 						\hline
 					\end{tabular}
 				\end{table}
+			
+			\subsubsection*{Question 17.2.10}
+		
+			Cette question s'intéresse à l'effet de l'augmentation de nombre d'éléments de l'ensemble d'entraînement. Nous pouvons répondre à cette question grâce à la Table \ref{tab-IBk-J48}. Nous observons ainsi que plus l'ensemble d'entraînement est grand, plus la précision du modèle augmente jusqu'à un certain seuil où elle devient constante. Nous constatons que ce seuil se situe aux environs de $67\%$ pour \textit{IBk} et $69\%$ pour \textit{J48}.
+		
+			\subsubsection*{Question 17.2.11}
+		
+			On nous demande ici d'identifier laquelle des deux techniques -\textit{IBk} et \textit{J48}- est la plus affectée par l'augmentation de la taille de l'ensemble d'entraînement. En nous référant à la Table \ref{tab-IBk-J48}, nous observons que \textit{IBk} a une précision initiale de $52.8\%$ pour arriver finalement à une précision de $66.8\%$. La précision du modèle \textit{IBk} subit donc une variation de $14\%$. Pour \textit{J48}, la précision du modèle varie de $45.3\%$ à $68.2\%$ ce qui donne une variation de $22.9\%$. Comme le modèle \textit{J48} à une plus grande variation que \textit{IBk}, nous concluons que \textit{J48} est la technique la plus sensible à la taille de l'ensemble d'apprentissage.
+			
+		\subsection{Questions 17.3.1 à 17.3.11}
+		
+			\subsubsection*{Question 17.3.1}
    	
    	\section{CoIL Challenge 2000}
    	
