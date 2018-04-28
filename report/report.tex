@@ -263,6 +263,65 @@
 		\subsection{Questions 17.3.1 à 17.3.11}
 		
 			\subsubsection*{Question 17.3.1}
+			
+			Pour résoudre cette question, nous utilisons le \textit{boundary visualizer} de \textit{Weka}. Cet outil sert à visualiser graphiquement les prédictions d'un modèle, dans notre cas, ce modèle est produit par le classificateur \textit{1R}. La Figure \ref{fig:iris:OneR} montre le résultat obtenu. Nous y voyons que la prédiction du modèle ne se fait uniquement qu'en fonction de la largeur des pétales (axe Y).
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=.5\textwidth]{iris_OneR}
+				\caption{Prédiction du type d'iris en fonction de la longueur des pétales (axe X) et de la largeur des pétales (axe Y) grâce au modèle 1R}
+				\label{fig:iris:OneR}
+			\end{figure}
+			
+			\subsubsection*{Question 17.3.2}
+			
+			Pour résoudre cette question, nous avons du jouer avec le paramètre \textit{minBucketSize} du classificateur \textit{1R}. Après avoir testé plusieurs valeurs, nous pouvons conclure que ce paramètre ne change pas les résultats obtenus lors de la question précédente (voir Figure \ref{fig:iris:OneR}).\\
+			
+			Nous pensons que c'est parce les valeurs que peuvent prendre la largeur des pétales (axe Y) varient entre $0.1$ et $2.5$. Il ne faut donc que 3 \textit{buckets} pour discrétiser ces valeurs. Etant donné le nombre d'instances de ce jeu de données, la valeur de \textit{minBucketSize} n'est utilisée que si elle n'est supérieure ou égale à 50. 50 est la valeur frontière car il y a 50 instances associés à chaque label.
+			
+			\subsubsection*{Question 17.3.3}
+			
+			On doit répondre à la question "Pourquoi n'y a-t-il pas plus de régions lorsque le \textit{bucket} a une petite valeur minimale ?". Cela s'explique car il s'agit d'une valeur minimale et donc, comme sur ce jeu de données on a relativement beaucoup d'instances par \textit{bucket}, la valeur de ce paramètre n'est pas prise en compte.
+			
+			\subsubsection*{Question 17.3.4}
+			
+			Le nombre minimum de région est 1 et la valeur minimum du paramètre \textit{minBucketSize} pour l'obtenir est 51. Cela peut s'expliquer simplement par le fait que chaque classe ne définit chacune que 50 instances.
+			
+			\subsubsection*{Question 17.3.5}
+			
+			En utilisant le classificateur \textit{IBK} avec k=1, nous obtenons la prédiction visible à la Figure \ref{fig:iris:IB1}. Comme expliqué dans l'énoncé, chaque point ne possède qu'une des trois couleurs (rouge, vert ou bleu) car k vaut 1 et donc, le modèle ne prédit pas un point pouvant appartenir à plusieurs classe.\\
+			
+			Nous remarquons néanmoins une zone du graphique qui fait exception à cela car sa couleur est une nuance de bleu (et pas totalement bleu). Nous pouvons justifier cela car il existe plusieurs instances qui ont les même longueur et largeur de pétale mais qui sont associés à des classes différentes. La zone possédant une couleur nuancée est en fait la zone qui contient ces instances.   
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=.5\textwidth]{iris_IB1}
+				\caption{Prédiction du type d'iris en fonction de la longueur des pétales (axe X) et de la largeur des pétales (axe Y) grâce au modèle IBK (avec k=1)}
+				\label{fig:iris:IB1}
+			\end{figure}
+			
+			\subsubsection*{Question 17.3.6}
+			
+			En augmentant les valeurs du paramètre k, nous remarquons que les zones de la prédiction sont de plus en plus nuancées comme nous le montre la Figure \ref{fig:iris:IB5-10}.
+			
+			\begin{figure}[h]
+				\centering
+				\begin{subfigure}{.5\textwidth}
+					\centering
+					\includegraphics[width=.9\textwidth]{iris_IB5}
+					\caption{k=5}
+				\end{subfigure}%				
+				\begin{subfigure}{.5\textwidth}
+					\centering
+					\includegraphics[width=.9\textwidth]{iris_IB10}
+					\caption{k=10}
+				\end{subfigure}
+
+				\caption{Prédiction du type d'iris en fonction de la longueur des pétales (axe X) et de la largeur des pétales (axe Y) grâce au modèle IBK}
+				\label{fig:iris:IB5-10}
+			\end{figure}
+			
+			\subsubsection*{Question 17.3.7}
    	
    	\section{CoIL Challenge 2000}
    	
