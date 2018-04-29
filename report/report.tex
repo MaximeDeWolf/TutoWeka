@@ -12,6 +12,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{hyperref}
+
 \setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
 
 \title{Travaux pratiques avec Weka}                             % Title
@@ -304,7 +305,7 @@
 			
 			En augmentant les valeurs du paramètre k, nous remarquons que les zones de la prédiction sont de plus en plus nuancées comme nous le montre la Figure \ref{fig:iris:IB5-10}.
 			
-			\begin{figure}[h]
+			\begin{figure}[!]
 				\centering
 				\begin{subfigure}{.5\textwidth}
 					\centering
@@ -322,6 +323,57 @@
 			\end{figure}
 			
 			\subsubsection*{Question 17.3.7}
+			
+			Effectivement, comme le montre la Figure \ref{fig:iris:NaiveBayes}, la prédiction donnée par le modèle \textit{NaïveBayes} a un \textit{pattern} très différent des prédictions précédemment obtenues.\\
+			
+			Nous pouvons expliquer ce \textit{pattern} par le fait que \textit{NaïveBayes} base sa prédiction par rapport à la probabilité d'appartenir à une classe selon les valeurs X et Y d'une instance. Cela donne donc ce motif quadrillé.\\
+			
+			La couleur de chaque zone est ensuite calculée en fonction de la "couleur" des instances qu'elle contient ainsi qu'aux autres zones "proche". Comme les instances de notre jeu de données se situent surtout sur la diagonale montante, nous obtenons un motif symétrique.	
+			
+			\begin{figure}[!]
+				\centering
+				\includegraphics[width=.5\textwidth]{iris_NaiveBayes}
+				\caption{Prédiction du type d'iris en fonction de la longueur des pétales (axe X) et de la largeur des pétales (axe Y) grâce au modèle NaïveBayes}
+				\label{fig:iris:NaiveBayes}
+			\end{figure}
+			
+			\subsubsection*{Question 17.3.8}
+			
+			Le modèle \textit{JRip} nous donne la prédiction visible à la Figure \ref{fig:iris:JRip}. Nous pouvons y voir que le modèle fait ses prédictions en fonctions de la longueur des pétales (axe X) sauf pour les classes \textit{iris-versicolor} où la largeur des pétales intervient également.\\
+			
+			Un petit coup d'œil dans l'\textit{explorer} de \textit{Weka} nous permet de savoir quelles sont les règles de prédiction utilisées par \textit{JRip}. Ces règles sont les suivantes:
+			
+			\begin{itemize}
+				\item (petallength $\le$ 1.9) $\implies$ class=Iris-setosa
+				\item (petalwidth $\le$ 1.6) and (petallength $\le$ 4.9) $\implies$ class=Iris-versicolor
+				\item otherwise class=Iris-virginica
+			\end{itemize}   
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=.5\textwidth]{iris_JRip}
+				\caption{Prédiction du type d'iris en fonction de la longueur des pétales (axe X) et de la largeur des pétales (axe Y) grâce au modèle JRip}
+				\label{fig:iris:JRip}
+			\end{figure}
+			
+			\subsubsection*{Question 17.3.9}
+			
+			Les règles utilisées par \textit{JRip} lors de la question précédente donnent de bonnes prédictions uniquement si elles sont exécutées dans le bon ordre. Voici un ensemble de règles équivalentes dont le résultat ne dépend pas de l'ordre dans lesquelles on les exécutent:
+			
+			\begin{itemize}
+				\item (petallength $\le$ 1.9) $\implies$ class=Iris-setosa
+				\item (petalwidth $\le$ 1.6) and (1.9 $<$ petallength $\le$ 4.9) $\implies$ class=Iris-versicolor
+				\item (1.9 $<$ petallength) and (1.6 $<$ petalwidth) or (4.9 $<$ petallength) $\implies$ Iris-virginica
+			\end{itemize}
+			
+			\subsubsection*{Question 17.3.10}
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=.5\textwidth]{iris_J48}
+				\caption{Prédiction du type d'iris en fonction de la longueur des pétales (axe X) et de la largeur des pétales (axe Y) grâce au modèle J48}
+				\label{fig:iris:J48}
+			\end{figure}
    	
    	\section{CoIL Challenge 2000}
    	
