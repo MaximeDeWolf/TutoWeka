@@ -368,12 +368,192 @@
 			
 			\subsubsection*{Question 17.3.10}
 			
+			La Figure \ref{fig:iris:J48} montre la prédiction suivant le modèle \textit{J48}. Sans surprise, nous pouvons voir que ce modèle découpe des zones soit selon l'axe X, soit selon l'axe Y, c'est pour cela qu'aucune zone n'est délimitée par un segment diagonal.\\
+			
+			Nous pouvons y voir une zone dont la couleur est une nuance de bleu et de vert. Cela vient du fait que l'arbre du modèle \textit{J48} a subi un élagage afin d'éviter un \textit{overfit} des données. Cette zone contient donc des instances appartenant à des classes différentes.\\
+			
+			La Figure \ref{fig:iris:J48:tree} montre l'arbre généré par J48 qui est utilisé pour faire les prédictions.
+			
 			\begin{figure}[h]
 				\centering
 				\includegraphics[width=.5\textwidth]{iris_J48}
 				\caption{Prédiction du type d'iris en fonction de la longueur des pétales (axe X) et de la largeur des pétales (axe Y) grâce au modèle J48}
 				\label{fig:iris:J48}
 			\end{figure}
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=.8\textwidth]{iris_J48_tree}
+				\caption{Arbre généré par J48 afin de prédire le type d'iris}
+				\label{fig:iris:J48:tree}
+			\end{figure}
+   	
+   	
+		   	\subsubsection*{Question 17.3.11}
+		   	
+		   	Pour résoudre cette question, nous devons jouer avec les arguments du modèle \textit{J48} afin d'obtenir 3, 2, puis une zone dans les prédictions. La Figure \ref{fig:iris:J48:zones} résume les résultats obtenus.
+		   	
+		   	\begin{figure}[!]
+		   		\centering
+		   		\begin{subfigure}{.333\textwidth}
+		   			\centering
+		   			\includegraphics[width=.9\textwidth]{iris_J48_3zones}
+		   			\caption{7 à 49 instances par feuilles}
+		   		\end{subfigure}%				
+		   		\begin{subfigure}{.333\textwidth}
+		   			\centering
+		   			\includegraphics[width=.9\textwidth]{iris_J48_2zones}
+		   			\caption{50 à 75 instances par feuilles}
+		   		\end{subfigure}%
+		   		\begin{subfigure}{.333\textwidth}
+		   			\centering
+		   			\includegraphics[width=.9\textwidth]{iris_J48_1zone}
+		   			\caption{76 à 150 instances par feuilles}
+		   		\end{subfigure}
+		   		
+		   		\caption{Variation du nombre de zones des prédictions du jeu de données \textit{Iris.arff} en fonction du paramètre \textit{minNumObj} de J48}
+		   		\label{fig:iris:J48:zones}
+		   	\end{figure}
+		   	
+		\subsection{Questions 17.4.1 à 17.4.4 + question 17.4.8}
+		
+			\subsubsection*{Question 17.4.1}
+			
+			Cette question porte sur la discrétisation non-supervisée des données. Il nous est donc demandé de discrétiser les données du fichier \textit{glass.arff} selon deux méthodes différentes : \textit{equal-width} et \textit{equal-frequency}. La Figure \ref{fig:glass:disc} montre les résultats ainsi obtenus.\\
+			
+			La méthode \textit{equal-width} discrétise les données en créant des intervalles de mêmes longueurs. Il est donc normal que nous voyons apparaître de gros écart de "population" entre les différents intervalles.\\
+			
+			La méthode \textit{equal-frequency} discrétise les données en créant des intervalles peuplés plus ou moins de la même façon. Il est donc normal que les écarts  de "population" entre intervalles sont très petits. Nous voyons tout de même quelques intervalles ayant de gros écarts avec les autres. Cela s'explique car ces pics sont causés par un grand nombre d'instances ayant la même valeur d'attribut. Il est donc normal qu'il soit impossible de placer ces instances dans des intervalles différents.
+			
+			\begin{figure}[h]
+				\centering
+				\begin{subfigure}{.5\textwidth}
+					\centering
+					\includegraphics[width=.9\textwidth]{glass_disc_width}
+					\caption{méthode \textit{equal-width}}
+				\end{subfigure}%				
+				\begin{subfigure}{.5\textwidth}
+					\centering
+					\includegraphics[width=.9\textwidth]{glass_disc_freq}
+					\caption{méthode \textit{equal-frequency}}
+				\end{subfigure}
+				
+				\caption{Discrétisation du jeu de données \textit{glass.arff} suivant 2 méthodes non-supervisées différentes}
+				\label{fig:glass:disc}
+			\end{figure}
+			
+			\subsubsection*{Question 17.4.2}
+			
+			La figure \ref{fig:iris:disc} montre le résultat de la discrétisation supervisée du fichier \textit{iris.arff}. Cette méthode permet de mettre en évidence les attributs les plus appropriés afin d'effectuer une classification. Ici, nous remarquons que l'attribut \textit{petalwidth} est un bon candidat pour tenter une classification. Cela conforte les résultats obtenus pour répondre aux questions du chapitre 17.3.
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=.8\textwidth]{iris_disc}
+				\caption{Discrétisation supervisée du fichier \textit{iris.arff}}
+				\label{fig:iris:disc}
+			\end{figure}
+			
+			
+			\subsubsection*{Question 17.4.3}
+			
+			Cette question demande la même chose que la précédente sauf qu'on utilise cette fois le fichier \textit{glass.arff}. Nous remarquons que certains attributs ne comptent qu'un seul intervalle. Ces attributs (\textit{Fe} et \textit{Si}) sont en fait de très mauvais candidats pour effectuer une classification comme nous l'avons déjà remarqué pendant la question 17.2.4. 
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=.8\textwidth]{glass_disc_sup}
+				\caption{Discrétisation supervisée du fichier \textit{glass.arff}}
+				\label{fig:glass:disc:sup}
+			\end{figure}
+			
+			
+			\subsubsection*{Question 17.4.4}
+			
+			Pour cette question, nous effectuons la même manipulation qu'à la question précédente sauf que nous mettons le paramètre \textit{makeBinary} du filtre à vrai. Nous remarquons alors que ce paramètre sert à ne créer que 2 intervalles maximum par attribut quitte à créer de nouveaux attributs pour stocker les intervalles excédants. Nous pouvons avoir un aperçu de cette manipulation grâce à la Figure \ref{fig:glass:disc:bin}.
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=.8\textwidth]{glass_disc_bin}
+				\caption{Discrétisation supervisée du fichier \textit{glass.arff} avec le paramètre \textit{makeBinary} à vrai}
+				\label{fig:glass:disc:bin}
+			\end{figure}
+			
+			\subsubsection*{Question 17.4.8}
+			
+			Pour cette question, nous devions trouver les 4 attributs les plus pertinents dans le but d'une classification. Nos résultats sont les suivants par ordre décroissant de pertinence:
+			
+			\begin{enumerate}
+				\item \textit{wage-increase-first-year}
+				\item \textit{wage-increase-second-year}
+				\item \textit{statutory-holidays}
+				\item \textit{contribution-to-dental-plan}
+			\end{enumerate}
+			
+		\subsection{Questions 17.5.1 à 17.5.4 + question 17.5.6}
+		
+			\subsubsection*{Question 17.5.1}
+			
+			Pour résoudre cette question, nous commençons par créer un document texte sur lequel nous appliquerons le filtre \textit{StringToWordVector}. Le document texte que nous avons créer contient les mêmes données que la Table \ref{tab:oil:training}.\\
+			
+			Ce filtre créer un jeu de données à partir de notre document texte. Il créer un attribut par mot, soit un total de 34 pour notre exemple. Ensuite, nous mettons le paramètre \textit{minTermFreq} de ce filtre à 2. Cela implique qu'il ne crée un nouvel attribut que pour un mot seulement si il apparaît au moins 2 fois dans le texte.
+				
+			\begin{table}[h]
+				\centering
+				\caption{Document d'apprentissage}
+				\label{tab:oil:training}
+				\begin{tabular}{|c c|}
+					\hline
+					\textbf{Document texte} & \textbf{Classification}\\
+					The price of crude oil has increased significantly & yes\\
+					Demand for crude oil outstrips supply & yes\\
+					Some people do not like the flavor of olive oil & no\\
+					The food was very oily & no\\
+					Crude oil is in short supply & yes\\
+					Use a bit of cooking oil in the frying pan & no\\
+					\hline
+				\end{tabular}
+			\end{table}
+				
+			\subsubsection*{Question 17.5.2}
+			
+			Nous utilisons ces données fraîchement récoltées afin de créer un arbre de décision grâce à \textit{J48}. La Figure \ref{fig:text:training:tree} nous montre cet arbre.
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=.5\textwidth]{text_tree}
+				\caption{Arbre de classification produit par \textit{J48}}
+				\label{fig:text:training:tree}
+			\end{figure}
+			 
+			\subsubsection*{Question 17.5.3}
+			
+			Nous testons ensuite cet arbre sur un jeu de données extrait d'un autre fichier texte. Ce fichier contient les mêmes données que la Table \ref{tab:oil:test}. Ce modèle nous donne les prédictions suivantes par ordre d'apparition dans la Table \ref{tab:oil:test}:
+			
+			\begin{enumerate}
+				\item \textit{yes}      
+				\item \textit{no}
+				\item \textit{no}
+				\item \textit{no}  
+			\end{enumerate}
+			
+			Nous remarquons que ce modèle est cohérent même si sa troisième prédiction aurait du être \textit{yes}. Cela est sûrement dû au fait que l'ensemble d'entraînement est très petit.
+			
+			\begin{table}[h]
+				\centering
+				\caption{Document test}
+				\label{tab:oil:test}
+				\begin{tabular}{|c c|}
+					\hline
+					\textbf{Document texte} & \textbf{Classification}\\
+					Oil platforms extract crude oil & ?\\
+					Canola oil is supposed to be healthy & ?\\
+					Iraq has significant oil reserves & ?\\
+					There are different types of cooking oil & ?\\
+					\hline
+				\end{tabular}
+			\end{table}
+			
+			\subsubsection*{Question 17.5.4}
+			 
    	
    	\section{CoIL Challenge 2000}
    	
