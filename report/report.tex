@@ -88,9 +88,9 @@
 	   			
 	   			\begin{table}[h]
 	   				\centering
+	   				\caption{\textit{Confusion matrix} obtenues grâce à deux méthodes de test différentes}
 					\begin{subtable}{0.4\textwidth}
 						\centering
-						\caption{\textit{Dataset} complet}
 						\begin{tabular}{|c|c|c|l|}
 							\hline
 							a & b & c & \\ 
@@ -102,10 +102,10 @@
 							0 & 2 & 48 & c = Iris-virginica\\
 							\hline
 						\end{tabular}
+						\caption{\textit{Dataset} complet}
 					\end{subtable}%
 					\begin{subtable}{0.4\textwidth}
 						\centering
-						\caption{\textit{10-fold cross-validation}}
 						\begin{tabular}{|c|c|c|l|}
 							\hline
 							a & b & c & \\ 
@@ -117,8 +117,8 @@
 							0 & 2 & 48 & c = Iris-virginica\\
 							\hline
 						\end{tabular}
+						\caption{\textit{10-fold cross-validation}}
 					\end{subtable}
-					\caption{\textit{Confusion matrix} obtenues grâce à deux méthodes de test différentes}
 	   			\end{table}
  
 				 Nous remarquons que le test sur le \textit{dataset} complet classifie correctement $98\%$ des instances tandis que ce chiffre descend à $96\%$ avec le test \textit{10-fold cross-validation}. Tester le modèle avec le \textit{dataset} complet est une mauvaise idée car il donne une estimation optimiste de la qualité du modèle. En revanche, \textit{10-fold cross-validation} permet de se faire une bonne idée de la généralisation du modèle et offre donc une meilleure mesure de qualité.
@@ -553,7 +553,63 @@
 			\end{table}
 			
 			\subsubsection*{Question 17.5.4}
-			 
+			
+			  Pour cette question, nous devons construire deux modèles en utilisant \textit{J48} et \textit{NaiveBayesMultinomial} pour deux jeux de données textuelles. Le premier de ces deux jeu de données a pour but d'identifier les textes qui parlent de maïs (\textit{ReutersCorn-train.arff}) tandis que le but du second est d'identifier les textes qui parlent de graines (\textit{ReutersGrain-train.arff}).\\
+			  
+			  La Table \ref{tab:corn} résume les résultats obtenus pour les deux classificateurs sur le premier jeu de données. Nous voyons que \textit{J48} est meilleur que \textit{NaiveBayesMultinomial} sur tous les plans. Il est donc évident que pour ce jeu de données, \textit{J48} est le classificateur que nous choisirions.\\ 
+			  
+			  \begin{table}[h]
+			  	\centering
+			  	\caption{Résultats des deux modèles entraînés sur \textit{ReutersCorn-train.arff} et testés sur \textit{ReutersCorn-test.arff}}
+			  	\label{tab:corn}
+		  		\begin{tabular}{|c|c|c|c|}
+		  			\hline
+		  			&Instances bien  & Précision & \textit{Recall}\\
+		  			& classifiées  &  & \\ 
+		  			\hline
+		  			\textit{J48} & $97.4 \%$ & $97.3\%$ & $97.4\%$ \\
+		  			\hline
+		  			\textit{NaiveBayesMultinomial}& $93.7\%$ & $96.4\%$ & $93.7\%$ \\
+		  			\hline
+		  		\end{tabular}
+			  \end{table}
+			  
+			  La Table \ref{tab:grain} montre les résultats des deux classificateurs sur le second jeu de données. Ici encore nous voyons que \textit{J48} est le meilleur des deux classificateurs. Toutefois, nous remarquons que \textit{NaiveBayesMultinomial} a une meilleure précision en moyenne. Cela veut dire que le modèle fait peu d'erreur lorsqu'il doit prédire la classe d'une instance. Cependant, il s'agit là d'une moyenne. En effet, en regardant les résultats de plus près, nous remarquons que ce modèle à en fait une très mauvaise précision ($21.4 \%$) pour ce qui est de repérer les textes qui parlent de graines. Cela conforte donc notre choix de \textit{J48}.
+			  
+			  \begin{table}[h]
+			  	\centering
+			  	\caption{Résultats des deux modèles entraînés sur \textit{ReutersGrain-train.arff} et testés sur \textit{ReutersGrain-test.arff}}
+			  	\label{tab:grain}
+			  	\begin{tabular}{|c|c|c|c|}
+			  		\hline
+			  		&Instances bien  & Précision & \textit{Recall}\\
+			  		& classifiées  &  & \\ 
+			  		\hline
+			  		\textit{J48} & $94.5 \%$ & $96.2\%$ & $94.5\%$ \\
+			  		\hline
+			  		\textit{NaiveBayesMultinomial}& $86.3\%$ & $96.5\%$ & $86.3\%$ \\
+			  		\hline
+			  	\end{tabular}
+			  \end{table}
+			  
+			  \subsubsection*{Question 17.5.6}
+			  
+			  La Table \ref{tab:text:ROC} montre les valeurs de \textit{ROC} des deux classificateurs sur les deux jeux de données. Contrairement aux résultats précédemment obtenus, \textit{NaiveBayesMultinomial} apparaît comme étant le meilleur classificateur pour ce problème.
+			  
+			  \begin{table}[h]
+			  	\centering
+			  	\caption{Récapitulatif des valeurs \textit{ROC} pour les 2 classificateurs et les 2 jeux de données}
+			  	\label{tab:text:ROC}
+			  	\begin{tabular}{|c|c|c|}
+			  		\hline
+			  		& Maïs & Graines \\
+			  		\hline
+			  		\textit{J48} & $69.4\%$ & $90.3\%$\\
+			  		\hline
+			  		\textit{NaiveBayesMultinomial} & $95.2\%$ & $96.5\%$\\
+			  		\hline
+			  	\end{tabular}
+			  \end{table}
    	
    	\section{CoIL Challenge 2000}
    	
