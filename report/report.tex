@@ -613,5 +613,95 @@
    	
    	\section{CoIL Challenge 2000}
    	
+	   	\subsection{Description du problème}
+	   	
+		   	Le problème consiste à concevoir un modèle capable de détecter les personnes potentiellement intéressées par la souscription d'une assurance caravane. Le but de cette tâche est d'envoyer une publicité ciblée sur ces personnes afin de réduire les coûts de celle-ci. Nous nous limiterons donc à l'envoie de 800 de ces publicités.\\
+		   	
+		\subsection{Description des données}
+		   	
+		   	Pour concevoir ce modèle, nous possédons un fichier d'entraînement contenant les données "historiques" de 5822 personnes dont 348 ($\pm6\%$) possèdent une assurance caravane.\\
+		   	
+		   	Nous possédons également un fichier contenant les données de 4000 personnes parmi lesquelles nous aimerions envoyer les 800 courriers publicitaires. Nous nous attendons à ce que la même proportion de ces personnes soient intéressée par une assurance caravane que dans notre fichier "historique". Nous estimons donc que $6\%$ de ces 4000 personnes ($\pm240$) soient intéressées.
+		   	
+		\subsection{Mesures importantes}
+		
+			Afin de repérer au mieux les personnes intéressées par l'assurance caravane, notre modèle doit maximiser la mesure \textit{recall} afin de trouver un maximum de ces personnes. Nous devons également veiller à ce que la mesure \textit{precision} de notre modèle ne soit pas trop mauvaise afin de ne pas dépasser les 800 courriers publicitaires à envoyer.
+			
+		\subsection{Pré-traitement des données}
+		
+			\subsubsection*{Extraction des données}
+			
+				Dans un premier temps, nous devons convertir les fichiers de données en format compatible pour le logiciel \textit{Weka}. Pour ce faire, nous utilisions un petit programme \textit{Python} écrit par un autre élève: Nico Salamone.
+				
+			\subsubsection*{Sélection d'attributs}
+			
+				Afin de faire une sélection correcte des attributs du jeu de données, nous essayons plusieurs évaluateurs d'attributs afin d'être sûr de choisir la meilleure sélection d'attributs. Dans notre cas nous choisissons le modèle \textit{NaiveBayes} pour évaluer les sélections. Nous évaluerons l'efficacité d'une sélection selon les valeurs \textit{precision} et \textit{recall} de la classification pour la classe qui nous intéresse. La Table \ref{tab:select} résume les résultats obtenus pour les différentes sélections effectuées.
+				
+				Vous trouverez ci-dessus un détail sur les différents évaluateurs d'attributs testés. 
+				\\
+				
+				Dans un premier temps nous effectuons la classification sur la totalité des attributs afin d'avoir un point de comparaison. Nous lançons donc le test sur les 85 attributs.
+				
+				Ensuite, nous testons l'évaluateur \textit{CfsSubsetEval} qui est l'évaluateur par défaut. Il sélectionne les attributs suivants: \textbf{25,42,43,44,47,59,61,64,68,82}. Comme le montre la Table \ref{tab:select}, les résultats obtenus sont très médiocre.
+				
+				L'évaluateur \textit{ConsistencySubsetEval} est légèrement meilleur mais n'est toujours pas satisfaisant. Il sélectionne les attributs suivant: \textbf{1,3,4,6,16,21,23,24,29,30,32,37,40,44,47,54,59,61,64,68}.
+				
+				Nous avons effectué plusieurs tests avec l'évaluateur \textit{GainRatioAttributeEval}. D'abord, nous avons sélectionné les attributs qui un ratio de gain supérieur à $0.01$. Cela nous a donné la sélection suivante: \textbf{82,61,47,85,64,68,86}. Malheureusement, une fois encore les résultats ne sont pas satisfaisant.\\
+				Nous avons ensuite sélectionné les attributs dont le ratio de gain est supérieur à $0$. Cela nous a donc donné la sélection suivante: \textbf{82,61 ,47 ,85 ,64 ,68 ,25 ,19 ,59 ,42 ,37 ,65 ,43 ,44 ,30 ,31 ,18 ,54 ,75 ,10 ,34 ,39 ,12 ,80 ,5 ,16 ,32 ,1 ,29 ,28 ,21 ,40 ,22 ,24 ,23 ,35 ,36 ,13 ,2 ,6 ,3 ,4 ,86}. Cette sélection donne de bons résultats mais sont toujours inférieur aux résultats obtenus en sélectionnant la totalité des attributs.
+				
+				Nous avons également testé d'autres évaluateurs mais nous ne les avons pas mentionné car ils sélectionnaient soit aucun soit tout les attributs.
+				
+				\begin{table}[h]
+					\centering
+					\caption{Résultats des différentes sélections effectuées}
+					\label{tab:select}
+					\begin{tabular}{|c|c|c|}
+						\hline
+						& \textit{Precision} & \textit{Recall}\\
+						\hline
+						Pas de sélection & $13.6\%$& $48.6\%$\\
+						\hline
+						\textit{CfsSubsetEval} & $23.8\%$ & $10.9\%$ \\
+						\hline
+						\textit{ConsistencySubsetEval} & $19.8\%$ & $28.2\%$\\
+						\hline
+						\textit{GainRatioAttributeEval} $>0.01$ & $24.3\%$ & $7.8\%$ \\
+						\hline
+						\textit{GainRatioAttributeEval} $>0$ & $14.4\%$ & $46.0\%$ \\
+						\hline
+					\end{tabular}
+				\end{table}
+				
+				Au vu de ces résultats, nous pouvons dire que la sélection d'attributs n'améliore pas la classification de ce jeu de données. Nous notons toutefois que \textit{GainRatioAttributeEval} $>0$ constitue une alternative intéressante car bien qu'il a une valeur de \textit{recall} légèrement plus petite, sa valeur de \textit{precision} est légèrement plus grande. La sélection d'attribut qu'il propose pourrait donc nous permettre de ne pas dépasser le seuil des 800 courriers publicitaires à envoyer. Peut-être même que l'intersection des solutions de ces deux sélections nous permettrais d'avoir de meilleurs résultats.
+				
+			\subsection{Discussion sur trois classificateurs}
+			
+				Maintenant que nous avons décidé quelle sous-ensemble d'attributs nous utiliserons, nous devons choisir le classificateur qui maximise nos valeurs de mesures d'efficacité à savoir \textit{precision} et \textit{recall}. Afin de tester ces classificateurs, nous testons les modèles grâce à un test \textit{10-folds cross-validation}. La Table \ref{tab:classificateur} résume les résultats obtenus par les trois classificateurs que nous considérons. Vous trouverez également ci-dessous une discussion à propos de ceux-ci.
+				
+				Le classificateur \textit{NaiveBayes} a été retenu car c'est celui qui \textit{a priori} paraissait être le meilleur. C'est pour cette raison que nous l'avions utilisé afin de choisir une sélection pertinente lors du précédent chapitre.\\
+				
+				Nous avons également retenu \textit{IBK} car nous l'avions utilisé à plusieurs reprises lors des exercices que nous avons fait dans le but de prendre en main le logiciel \textit{Weka}. Nous l'avons donc testé pour différentes valeurs de \textit{KNN}. Malheureusement, les résultats obtenus sont de plus en plus mauvais quand \textit{KNN} augmente. Les résultats que nous avons retenus dans la Table \ref{tab:classificateur} sont ceux pour \textit{KNN} égal à 1 (qui sont les meilleurs).\\
+				
+				Finalement, nous considérons \textit{J48} car nous voulions essayer un classificateur basé sur les arbres et nous l'avions utilisé à plusieurs reprises pendant les exercices. L'arbre qu'il construit ne contient qu'une feuille qui classe toutes les instances dans "pas intéressé par une assurance caravane". Pour éviter cela, nous faisons en sorte que cet arbre ne soit pas élagué. Ce sont les résultats de cet arbre non-élagué qui se retrouvent dans la Table \ref{tab:classificateur}.		
+				
+				
+				\begin{table}[h]
+					\centering
+					\caption{Résultats obtenus par les différents classificateurs}
+					\label{tab:classificateur}
+					\begin{tabular}{|c|c|c|}
+						\hline
+						& \textit{Precision} & \textit{Recall} \\
+						\hline
+						\textit{NaiveBayes} & $13.6\%$ & $48.6\%$\\
+						\hline
+						\textit{IBK} & $10.9\%$ & $11.2\%$\\
+						\hline
+						\textit{J48} & $14.4\%$ & $15.2\%$\\
+						\hline
+					\end{tabular}
+				\end{table}
+          	
+          	A la vue de ces résultats, nous pouvons aisément justifier notre choix de \textit{NaiveBayes} en tant que classificateur.
           	
 \end{document}
