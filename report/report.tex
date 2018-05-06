@@ -701,7 +701,19 @@
 						\hline
 					\end{tabular}
 				\end{table}
+				
+			\subsection{Choix du classificateur}
           	
-          	A la vue de ces résultats, nous pouvons aisément justifier notre choix de \textit{NaiveBayes} en tant que classificateur.
+	          	A la vue des résultats obtenus dans la section précédente, nous pouvons aisément justifier notre choix de \textit{NaiveBayes} en tant que classificateur. En effet, c'est lui qui a la plus grande valeur de \textit{recall} ce qui veut dire que c'est lui qui détecte le plus de "personnes intéressées par une assurance caravane". Malheureusement, sa valeur de \textit{precision} n'est pas très bonne, il est donc très probable que nous devrions sélectionner 800 instances parmi celles que notre modèle sélectionne. Nous n'aurons hélas aucun autre moyen de les sélectionner que de le faire aléatoirement.
+	          
+			\subsection{Capacité descriptive du classificateur}
+			
+				Malheureusement, le modèle \textit{NaiveBayes} ne nous indique pas comment il sélectionne les "personnes intéressée par une assurance caravane". Nous n'avons donc aucune idée des attributs utilisés pour déduire si une personne est intéressée ou non par une assurance caravane.
+				
+			\subsection{Méthode de sélection des instances}
+			
+				Afin de sélectionner les instances qui nous intéresse, nous allons lancer notre classificateur sur le jeu de données \textit{ticeval2000.arff} en demandant à \textit{Weka} d'écrire pour chaque instance la classe à laquelle il pense qu'elle appartient ainsi que la probabilité que cette classe soit effectivement correcte. Nous extrairons ensuite les 800 instances appartenant à la classe "est intéressé par une assurance caravane" qui ont la plus grande probabilité d'être vraie.\\
+				
+				Nous devrons faire cette extraction nous-même car \textit{Weka} ne permet pas d'exporter directement ses résultats. Nous écrirons donc un script \textit{Python} pour cette tâche. L'étape suivante sera de comparer ces résultats avec le fichier de correction afin d'évaluer notre score.
           	
 \end{document}
