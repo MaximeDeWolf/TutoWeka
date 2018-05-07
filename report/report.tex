@@ -708,7 +708,44 @@
 	          
 			\subsection{Capacité descriptive du classificateur}
 			
-				Malheureusement, le modèle \textit{NaiveBayes} ne nous indique pas comment il sélectionne les "personnes intéressée par une assurance caravane". Nous n'avons donc aucune idée des attributs utilisés pour déduire si une personne est intéressée ou non par une assurance caravane.
+				Malheureusement, le modèle \textit{NaiveBayes} ne nous indique pas clairement comment il sélectionne les "personnes intéressées par une assurance caravane". Nous pouvons par contre savoir quels attributs sont ceux qui influencent le plus la décision qu'il prend. Pour cela, nous devons interpréter les données que \textit{Weka} nous donne sur le modèle produit.\\
+				
+				Pour chaque attribut, \textit{NaiveBayes} associe une moyenne est un écart type par classe (ce qui nous donne donc une fonction gaussienne par classe et par attribut). Par la suite, pour classer une instance, il va parcourir la valeur de chacun de ses attributs et la comparer avec la moyenne et l'écart type qu'il a calculé pour chacune des classes. Sur base de ces comparaisons, le modèle va attribuer à cette instance la probabilité d'appartenir à chacune de ces classes. Finalement, la classe attribuée à l'instance sera celle qui aura obtenu la plus haute probabilité. Voici un exemple afin de clarifier les explications ci-dessus.\\
+				
+				Considérons un jeu de données très simple ne possédant qu'un attribut: l'attribut \textit{ATT} avec ses valeurs de moyennes et d'écarts types:
+				\begin{center}
+					\begin{tabular}{c|c c}
+						ATT & Classe 1 & Classe 2 \\
+						\hline
+						moyenne & $M_1$ & $M_2$ \\
+						écart type & $ET_1$ & $ET_2$\\
+					\end{tabular}
+				\end{center}
+				
+				Soit une instance $I$, la valeur de son attribut \textit{ATT} est $I_{ATT}$. Notre modèle classifiera l'instance $I$ comme suit:
+				\[
+					\text{Si } I_{ATT} \in [M_1 \pm ET_1] \implies I_{ATT} \in \text{Classe 1}
+				\]
+				\[
+					\text{Si } I_{ATT} \in [M_2 \pm ET_2] \implies I_{ATT} \in \text{Classe 2}
+				\]
+				
+				Il nous suffit donc de parcourir les moyennes et écarts types que le modèle a calculés pour chaque attribut et de regarder si ces valeurs se distinguent fortement entre classes. Si c'est le cas, c'est que cet attribut influence beaucoup le choix de la classe à attribuer.\\
+				
+				Dans notre cas, la Table \ref{tab:cap_desc} montre l'attribut le plus significatif pour notre modèle.	Nous remarquons cependant que les intervalles induits par les moyennes et écarts types de cet attribut se chevauchent et compliquent donc la décision que doit prendre notre modèle. Ce phénomène touche tous les attributs ce qui explique pourquoi notre modèle a tant de mal à classifier notre jeu de données. 
+
+								
+				\begin{table}[h]
+					\centering
+					\caption{Attribut qui influencent le plus la décision du modèle}
+					\label{tab:cap_desc}
+					\begin{tabular}{c|c c}
+						PPERSAUT & Caravane & Pas caravane \\
+						\hline
+						moyenne & 5.0115 & 2.9831 \\
+						écart type & 2.5787 & 3.059\\
+					\end{tabular}
+				\end{table}
 				
 			\subsection{Méthode de sélection des instances}
 			
