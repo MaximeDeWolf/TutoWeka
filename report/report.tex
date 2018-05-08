@@ -752,5 +752,23 @@
 				Afin de sélectionner les instances qui nous intéresse, nous allons lancer notre classificateur sur le jeu de données \textit{ticeval2000.arff} en demandant à \textit{Weka} d'écrire pour chaque instance la classe à laquelle il pense qu'elle appartient ainsi que la probabilité que cette classe soit effectivement correcte. Nous extrairons ensuite les 800 instances appartenant à la classe "est intéressé par une assurance caravane" qui ont la plus grande probabilité d'être vraie.\\
 				
 				Nous devrons faire cette extraction nous-même car \textit{Weka} ne permet pas d'exporter directement ses résultats. Nous écrirons donc un script \textit{Python} pour cette tâche. L'étape suivante sera de comparer ces résultats avec le fichier de correction afin d'évaluer notre score.
+				
+			\subsection{Score obtenu}
+			
+				En comparant nos résultats avec le fichier correctif fourni, nous voyons que nous repérons correctement 97 instances sur les 240 que nous estimions présente dans le fichier. Pour avoir un point de comparaison, \cite[Putten]{CoIlChallenge} indique que le vainqueur de cette compétition avait un score de 121. \cite[Putten]{CoIlChallenge} remarque également que le score moyen des participants européens est de 98. Nous pouvons donc dire que nos résultats sont relativement bon.
+				
+			\subsection{Discussion des résultats}
+			
+				Comme nous l'avons vu dans la section précédente, nos résultats sont relativement bon par rapport aux participants de la compétition. Mais le seul moyen de savoir ce que notre modèle prédictif vaut et de le comparer à un modèle aléatoire. \cite[Putten]{CoIlChallenge} avance qu'un modèle aléatoire aurait un score de 42. Notre score étant de 97, soit plus du double, nous pouvons donc conclure que notre modèle est significativement meilleure qu'une sélection aléatoire. Dans le cas contraire, notre modèle aurait été bon à jeter à la poubelle.\\
+				
+			\section{Conclusion}
+			
+				Pour conclure, nous pouvons dire que nous avons réussi à construire un modèle de prédiction relativement bon grâce à l'outil \textit{Weka}. De plus, nous avons atteint ce résultat sans utiliser de technique très élaborée étant donné que nous n'avons fait que construire un modèle du type \textit{Naïve Bayes} sans pré-traiter les données. Dès lors, nous pouvons nous demander si des efforts supplémentaires valent le coup d'être fournis étant donné le peu de valeur ajoutée que cela apporte. En effet, nous avons obtenu un score de 97 contre 121 pour le vainqueur de la compétition.\\
+				
+				Nous pouvons également nous interroger sur la qualité du jeu de données. En effet, certains attributs sont plutôt mal utilisés. Par exemple, il existe 3 attributs pour savoir si une personne possède 1, 2 ou pas de voiture. Cela n'est pas un cas isolé donc peut-être qu'un remaniement du jeu de données pourrait augmenter les performances du modèle.   
+				
+			
+	\bibliographystyle{plain}
+	\bibliography{bib}
           	
 \end{document}

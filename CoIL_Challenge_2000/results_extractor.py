@@ -42,19 +42,32 @@ def select_best_predictions(predictions, class_to_select, nbr_of_instance=None):
     if(len(sorted_predictions) <= nbr_of_instance):
         return sorted_predictions
     else:
-        predictions_to_select = []
-        count =0;
-        while count < nbr_of_instance:
-            predictions_to_select.append(sorted_predictions[count])
-            count += 1
-        return predictions_to_select
+        return sorted_predictions[:nbr_of_instance]
 
-def format_predictions(predictions):
+def format_predictions(predictions, nbr_of_elements, default_class):
     """Create a list that has the same format than the corrections file.
     """
+    formatted_predictions = []
     #sort according to instance number
     sorted_predictions = sorted(predictions, key=lambda x:x[0])
-    #TODO
+    count = 0
+    for i in range(nbr_of_elements):
+        current_instance = sorted_predictions[count][0]
+        #print("Current index: {}, next instance to treat: {}".format(i+1, current_instance))
+        if i+1 == current_instance:
+            formatted_predictions.append(sorted_predictions[count][1])
+            count+=1
+        else:
+            formatted_predictions.append(default_class)
+    return formatted_predictions
+
+def correct_predictions(predictions, corrections, interesting_class):
+    nbr_correct_prediction = 0
+    for prediction, correction in zip(predictions, corrections):
+        #print("Expected {} but {} found.".format(prediction, correction))
+        if interesting_class == prediction and prediction == int(correction):
+            nbr_correct_prediction += 1
+    return nbr_correct_prediction
 
 if __name__ == '__main__':
     predictions_file = sys.argv[1]
@@ -65,5 +78,7 @@ if __name__ == '__main__':
     predictions.readline()
     extracted_predictions = extract_caravan_predictions(predictions)
     best_predictions = select_best_predictions(extracted_predictions, 1, nbr_of_instance=800)
-    predictions_results = format_predictions(best_predictions)
-    print(best_predictions)
+    predictions_results = format_predictions(best_predictions, 4000, 0)
+    #print(predictions_results)
+    correct_predictions = correct_predictions(predictions_results, corrections, 1)
+    print(correct_predictions)
