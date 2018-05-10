@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -73,23 +73,23 @@
    	\section{Weka: Tutoriel}
    	
 	   	\subsection{Questions 17.1.9 et 17.1.10}
-		   	Ces questions portent sur l'arbre de décision crée à partir du fichier \textit{iris.arff}. Voici donc l'arbre de décision obtenu:
+		   	Ces questions portent sur l'arbre de décision créée à partir du fichier \textit{iris.arff}. Voici donc l'arbre de décision obtenu:
 		   	
 		   	\begin{figure}[h]
 		   		\begin{center}
-		   			\includegraphics[width=0.3\linewidth]{IrisTree}
+		   			\includegraphics[width=0.5\linewidth]{IrisTree}
 		   		\end{center}
 		   		\caption{Arbre de décision du \textit{dataset iris.arff}}
 		   		\label{fig-Iris-tree}
 		   	\end{figure}
 		   	
 		   	\subsubsection*{Question 17.1.9}
-			   	Cette question consiste à évaluer la qualité de cet arbre (Figure \ref{fig-Iris-tree}) grâce à différentes options de tests. Ici, on effectuera ces tests une première fois avec le \textit{dataset} complet et la $2^{e}$ fois avec la technique \textit{10-fold cross-validation}. Nous comparons ensuite les résultats obtenus sur base des 2 \textit{confusion matrix}:\\
+			   	Cette question consiste à évaluer la qualité de cet arbre (Figure \ref{fig-Iris-tree}) grâce à différentes options de tests. On effectue ces tests une première fois avec le \textit{dataset} complet et la $2^{e}$ fois avec la technique \textit{10-fold cross-validation}. Ensuite, nous comparons les résultats obtenus sur base des 2 \textit{confusion matrix}:\\
 	   			
 	   			\begin{table}[h]
 	   				\centering
-	   				\caption{\textit{Confusion matrix} obtenues grâce à deux méthodes de test différentes}
-					\begin{subtable}{0.4\textwidth}
+	   				\caption{\textit{Confusion matrix} obtenues grâce à deux méthodes différentes de tests}
+					\begin{subtable}{0.5\textwidth}
 						\centering
 						\begin{tabular}{|c|c|c|l|}
 							\hline
@@ -104,7 +104,7 @@
 						\end{tabular}
 						\caption{\textit{Dataset} complet}
 					\end{subtable}%
-					\begin{subtable}{0.4\textwidth}
+					\begin{subtable}{0.5\textwidth}
 						\centering
 						\begin{tabular}{|c|c|c|l|}
 							\hline
@@ -121,58 +121,60 @@
 					\end{subtable}
 	   			\end{table}
  
-				 Nous remarquons que le test sur le \textit{dataset} complet classifie correctement $98\%$ des instances tandis que ce chiffre descend à $96\%$ avec le test \textit{10-fold cross-validation}. Tester le modèle avec le \textit{dataset} complet est une mauvaise idée car il donne une estimation optimiste de la qualité du modèle. En revanche, \textit{10-fold cross-validation} permet de se faire une bonne idée de la généralisation du modèle et offre donc une meilleure mesure de qualité.
+				 Nous remarquons que le test sur le \textit{dataset} complet classifie correctement $98\%$ des instances tandis que ce chiffre descend à $96\%$ avec le test \textit{10-fold cross-validation}. Tester le modèle avec le \textit{dataset} complet donne une estimation optimiste de la qualité du modèle. En revanche, \textit{10-fold cross-validation} permet de se faire une bonne appréciation de la généralisation du modèle et offre donc une meilleure mesure de qualité. Il est donc plus judicieux d'utiliser cette seconde approche.
 				 
 			\subsubsection*{Question 17.1.10}
 			
-				En observant la localisation de ces erreurs, nous remarquons que certaines instances de classe \textit{Iris-Verginica} ont des valeurs d'attributs équivalentes à celles d'instance de classe \textit{Iris-Versicolor}. Le modèle n'a donc aucune chance de les différencier si nous voulons éviter l'\textit{overfitting}. D'autre part, nous remarquons que l'instance de classe \textit{Iris-Setosa} qui a été mal identifier aurait dû être correctement classé selon l'arbre de décision final obtenu. 
+				En observant la localisation de ces erreurs, nous remarquons que certaines instances de classe \textit{Iris-Verginica} ont des valeurs d'attributs équivalentes à celles d'instance de classe \textit{Iris-Versicolor}. Le modèle n'a donc aucune chance de les différencier si nous voulons éviter l'\textit{overfitting}. D'autre part, nous remarquons que l'instance de classe \textit{Iris-Setosa} mal identifiée aurait dû être correctement classé selon l'arbre de décision final obtenu. 
 		
 		\subsection{Questions 17.2.4 à 17.2.11}
 		
 			\subsubsection*{Question 17.2.4}
-				Le but de cette question est d'étudier la précision du classificateur \textit{5-nearest neighbor} en fonction des attributs utilisés lors de cette classification. Ici, nous exécutons cette algorithme sur le \textit{dataset glass.arff} et nous le test grâce à la technique \textit{10-fold cross-validation}. Les résultats ainsi obtenus sont résumés dans la table suivante:
+			
+				Le but de cette question est d'étudier la précision du classificateur \textit{5-nearest neighbor} en fonction des attributs utilisés lors de cette classification. Ici, nous exécutons cette algorithme sur le \textit{dataset glass.arff} et nous le testons grâce à la technique \textit{10-fold cross-validation}. Les résultats ainsi obtenus sont résumés dans la table suivante:
 				
 				\begin{table}[h]
 					\centering
-					\caption{Précision obtenue en utilisant \textit{IBk} pour différents sous-ensemble d'attributs}
+					\caption{Précision obtenue en utilisant \textit{IBk} pour différents sous-ensembles d'attributs}
 					\begin{tabular}{|c|c|c|}
 						\hline
 						Nombre d'attributs & Attribut retiré & Précision de la classification\\
 						\hline
-						9 & $\emptyset$ & 67.757 \\
+						9 & $\emptyset$ & $67.8\%$ \\
 						\hline
-						8 & Si & 71.4953 \\
+						8 & Si & $71.5\%$ \\
 						\hline
-						7 & Fe & 73.3645 \\
+						7 & Fe & $73.4\%$ \\
 						\hline
-						6 & Al & 73.3645 \\
+						6 & Al & $73.4\%$ \\
 						\hline
-						5 & Na & 74.2991 \\
+						5 & Na & $74.3\%$ \\
 						\hline
-						4 & Ba & 74.7664 \\
+						4 & Ba & $74.8\%$ \\
 						\hline
-						3 & K & 72.4299 \\
+						3 & K & $72.4\%$ \\
 						\hline
-						2 & Ca & 71.9626 \\
+						2 & Ca & $72.0\%$ \\
 						\hline
-						1 & Mg & 52.8037 \\
+						1 & Mg & $52.8\%$ \\
 						\hline
-						0 & RI & 35.514\\
+						0 & RI & $35.5\%$\\
 						\hline
 					\end{tabular}
 				\end{table}
 				
-				Grâce à ce tableau, nous remarquons donc que la précision de \textit{IBk} sur le \textit{dataset} complet est de $67.757\%$ alors que nous obtenons une précision de $74.7664\%$ une fois que nous retirons les attributs \textit{Si, Fe, Al, Na, Ba} du \textit{dataset}. Ce qui nous donne un gain d'environ $7\%$ de précision.
+				Grâce à ce tableau, nous remarquons donc que la précision de \textit{IBk} sur le \textit{dataset} complet est de $67.8\%$ alors que nous obtenons une précision de $74.8\%$ une fois que nous retirons les attributs \textit{Si, Fe, Al, Na, Ba} du \textit{dataset}. Ce qui nous donne un gain d'environ $7\%$ de précision.
 			
 			\subsubsection*{Question 17.2.5}
 			
-				Cette question demande de critiquer la pertinence de la précision maximum obtenue dans la question précédente. Ou, en d'autres mots, cette estimation est-elle biaisée ou non ?
+				Cette question demande de critiquer la pertinence de la précision maximum obtenue dans la question précédente. Ou, en d'autres termes: cette estimation est-elle biaisée ou non ?
 				Etant donné que le test du modèle est effectué sur le \textit{dataset} d'entraînement, cette estimation est effectivement biaisée.
 				
 			\newpage
 				
 			\subsubsection*{Question 17.2.6}
-				Cette question nous demande de constater l'effet du bruit sur un modèle construit grâce à \textit{IBk}. Pour ce faire, nous allons faire varier le pourcentage de bruits ainsi que la taille du voisinage dans les paramètres d'\textit{IBk}. Ainsi, une estimation de la précision sera calculé avec \textit{10-fold cross-validation}. Il est important de noter que ce test se fera sans les ajouts de bruits. Il n'y a donc présence de bruit que lors de la phase d'entraînement mais pas lors de la phase de test. La table suivante résume les résultat obtenus: 
+			
+				Cette question nous demande de constater l'effet du bruit sur un modèle construit grâce à \textit{IBk}. Pour ce faire, nous allons faire varier le pourcentage de bruit ainsi que la taille du voisinage dans les paramètres d'\textit{IBk}. Ainsi, une estimation de la précision sera calculée avec \textit{10-fold cross-validation}. Il est important de noter que ce test se fera sans les ajouts de bruit. Il n'y a donc présence de bruit que lors de la phase d'entraînement mais pas lors de la phase de test. La table suivante résume les résultats obtenus: 
 			
 				\begin{table}[h]
 					\centering
@@ -209,18 +211,18 @@
 				
 			\subsubsection*{Question 17.2.7}
 			
-				Cette question nous demande de critiquer les résultats obtenues lors de la question précédente. Plus particulièrement, on nous demande l'effet qu'a une augmentation du bruit au niveau de la classe. La Table \ref{tab-IBk-noise} nous permet de constater que cette augmentation réduit la précision du classificateur \textit{k-nearest neighbor} et ce peu importe la valeur du k.
+				Cette question nous demande de critiquer les résultats obtenus lors de la question précédente. Plus particulièrement, on nous demande l'effet qu'a une augmentation du bruit au niveau de la classe. La Table \ref{tab-IBk-noise} nous permet de constater que cette augmentation réduit la précision du classificateur \textit{k-nearest neighbor} et ce, peu importe la valeur du k.
 				
 				\subsubsection*{Question 17.2.8}
 				
 				Cette question s'intéresse plutôt aux effets qu'a la modification de la valeur de k pour le classificateur \textit{k-nearest neighbor}. Dans la Table \ref{tab-IBk-noise} nous remarquons qu'augmenter la valeur de k rend le modèle obtenu plus robuste au bruit.\\
 				
-				En effet, nous remarquons que bien qu'il n'y ait pas de différence significative entre les modèles obtenus pour k = 3 et k = 5, ils sont plus résistants au bruit que ceux obtenus pour k = 1.
+				En effet, nous remarquons que bien qu'il n'y ai pas de différence significative entre les modèles obtenus pour k = 3 et k = 5, ils sont plus résistants au bruit que ceux obtenus pour k = 1.
 				
 			\newpage
 				
 			\subsubsection*{Question 17.2.9}
-				Pour cette question, nous devons comparer les classificateurs \textit{IBk} et \textit{J48} en fonction du pourcentage de l'ensemble d'apprentissage utilisé. Ces résultats sont encodés dans la table suivante:
+				Pour cette question, nous devons comparer les classificateurs \textit{IBk} et \textit{J48} en fonction du pourcentage de l'ensemble d'apprentissage utilisé. Ces résultats sont encodés dans la Table \ref{tab-IBk-J48}.
 			
 				\begin{table}[h]
 					\centering
@@ -255,7 +257,7 @@
 			
 			\subsubsection*{Question 17.2.10}
 		
-			Cette question s'intéresse à l'effet de l'augmentation de nombre d'éléments de l'ensemble d'entraînement. Nous pouvons répondre à cette question grâce à la Table \ref{tab-IBk-J48}. Nous observons ainsi que plus l'ensemble d'entraînement est grand, plus la précision du modèle augmente jusqu'à un certain seuil où elle devient constante. Nous constatons que ce seuil se situe aux environs de $67\%$ pour \textit{IBk} et $69\%$ pour \textit{J48}.
+			Cette question s'intéresse à l'effet de l'augmentation du nombre d'éléments de l'ensemble d'entraînement. Nous pouvons répondre à cette question grâce à la Table \ref{tab-IBk-J48}. Nous observons ainsi que plus l'ensemble d'entraînement est grand, plus la précision du modèle augmente jusqu'à un certain seuil où elle devient constante. Nous constatons que ce seuil se situe aux environs de $67\%$ pour \textit{IBk} et $69\%$ pour \textit{J48}.
 		
 			\subsubsection*{Question 17.2.11}
 		
@@ -265,7 +267,7 @@
 		
 			\subsubsection*{Question 17.3.1}
 			
-			Pour résoudre cette question, nous utilisons le \textit{boundary visualizer} de \textit{Weka}. Cet outil sert à visualiser graphiquement les prédictions d'un modèle, dans notre cas, ce modèle est produit par le classificateur \textit{1R}. La Figure \ref{fig:iris:OneR} montre le résultat obtenu. Nous y voyons que la prédiction du modèle ne se fait uniquement qu'en fonction de la largeur des pétales (axe Y).
+			Pour résoudre cette question, nous utilisons le \textit{boundary visualizer} de \textit{Weka}. Cet outil sert à visualiser graphiquement les prédictions d'un modèle. Dans notre cas, ce modèle est produit par le classificateur \textit{1R}. La Figure \ref{fig:iris:OneR} montre le résultat obtenu. Nous y voyons que la prédiction du modèle ne se fait uniquement qu'en fonction de la largeur des pétales (axe Y).
 			
 			\begin{figure}[h]
 				\centering
@@ -276,7 +278,7 @@
 			
 			\subsubsection*{Question 17.3.2}
 			
-			Pour résoudre cette question, nous avons du jouer avec le paramètre \textit{minBucketSize} du classificateur \textit{1R}. Après avoir testé plusieurs valeurs, nous pouvons conclure que ce paramètre ne change pas les résultats obtenus lors de la question précédente (voir Figure \ref{fig:iris:OneR}).\\
+			Pour résoudre cette question, nous avons dû jouer avec le paramètre \textit{minBucketSize} du classificateur \textit{1R}. Après avoir testé plusieurs valeurs, nous pouvons conclure que ce paramètre ne change pas les résultats obtenus lors de la question précédente (voir Figure \ref{fig:iris:OneR}).\\
 			
 			Nous pensons que c'est parce les valeurs que peuvent prendre la largeur des pétales (axe Y) varient entre $0.1$ et $2.5$. Il ne faut donc que 3 \textit{buckets} pour discrétiser ces valeurs. Etant donné le nombre d'instances de ce jeu de données, la valeur de \textit{minBucketSize} n'est utilisée que si elle n'est supérieure ou égale à 50. 50 est la valeur frontière car il y a 50 instances associés à chaque label.
 			
@@ -286,15 +288,15 @@
 			
 			\subsubsection*{Question 17.3.4}
 			
-			Le nombre minimum de région est 1 et la valeur minimum du paramètre \textit{minBucketSize} pour l'obtenir est 51. Cela peut s'expliquer simplement par le fait que chaque classe ne définit chacune que 50 instances.
+			Le nombre minimum de régions est 1 et la valeur minimum du paramètre \textit{minBucketSize} pour l'obtenir est 51. Cela peut s'expliquer simplement par le fait que chaque classe ne définit chacune que 50 instances.
 			
 			\subsubsection*{Question 17.3.5}
 			
-			En utilisant le classificateur \textit{IBK} avec k=1, nous obtenons la prédiction visible à la Figure \ref{fig:iris:IB1}. Comme expliqué dans l'énoncé, chaque point ne possède qu'une des trois couleurs (rouge, vert ou bleu) car k vaut 1 et donc, le modèle ne prédit pas un point pouvant appartenir à plusieurs classe.\\
+			En utilisant le classificateur \textit{IBK} avec k=1, nous obtenons la prédiction visible à la Figure \ref{fig:iris:IB1}. Comme expliqué dans l'énoncé, chaque point ne possède qu'une des trois couleurs (rouge, vert ou bleu) car k vaut 1 et donc, le modèle ne prédit pas un point pouvant appartenir à plusieurs classes.\\
 			
-			Nous remarquons néanmoins une zone du graphique qui fait exception à cela car sa couleur est une nuance de bleu (et pas totalement bleu). Nous pouvons justifier cela car il existe plusieurs instances qui ont les même longueur et largeur de pétale mais qui sont associés à des classes différentes. La zone possédant une couleur nuancée est en fait la zone qui contient ces instances.   
+			Nous remarquons néanmoins une zone du graphique qui fait exception car sa couleur est une nuance de bleu (et pas totalement bleu). Nous pouvons le justifier car il existe plusieurs instances qui ont les mêmes longueurs et largeurs de pétale mais qui sont associées à des classes différentes. La zone possédant une couleur nuancée est en fait la zone qui contient ces instances.   
 			
-			\begin{figure}[h]
+			\begin{figure}[]
 				\centering
 				\includegraphics[width=.5\textwidth]{iris_IB1}
 				\caption{Prédiction du type d'iris en fonction de la longueur des pétales (axe X) et de la largeur des pétales (axe Y) grâce au modèle IBK (avec k=1)}
@@ -305,7 +307,7 @@
 			
 			En augmentant les valeurs du paramètre k, nous remarquons que les zones de la prédiction sont de plus en plus nuancées comme nous le montre la Figure \ref{fig:iris:IB5-10}.
 			
-			\begin{figure}[!]
+			\begin{figure}[]
 				\centering
 				\begin{subfigure}{.5\textwidth}
 					\centering
@@ -328,9 +330,9 @@
 			
 			Nous pouvons expliquer ce \textit{pattern} par le fait que \textit{NaïveBayes} base sa prédiction par rapport à la probabilité d'appartenir à une classe selon les valeurs X et Y d'une instance. Cela donne donc ce motif quadrillé.\\
 			
-			La couleur de chaque zone est ensuite calculée en fonction de la "couleur" des instances qu'elle contient ainsi qu'aux autres zones "proche". Comme les instances de notre jeu de données se situent surtout sur la diagonale montante, nous obtenons un motif symétrique.	
+			La couleur de chaque zone est ensuite calculée en fonction de la "couleur" des instances qu'elle contient ainsi que des autres zones "proches". Comme les instances de notre jeu de données se situent surtout sur la diagonale montante, nous obtenons un motif symétrique.	
 			
-			\begin{figure}[!]
+			\begin{figure}[]
 				\centering
 				\includegraphics[width=.5\textwidth]{iris_NaiveBayes}
 				\caption{Prédiction du type d'iris en fonction de la longueur des pétales (axe X) et de la largeur des pétales (axe Y) grâce au modèle NaïveBayes}
@@ -339,7 +341,7 @@
 			
 			\subsubsection*{Question 17.3.8}
 			
-			Le modèle \textit{JRip} nous donne la prédiction visible à la Figure \ref{fig:iris:JRip}. Nous pouvons y voir que le modèle fait ses prédictions en fonctions de la longueur des pétales (axe X) sauf pour les classes \textit{iris-versicolor} où la largeur des pétales intervient également.\\
+			Le modèle \textit{JRip} nous donne la prédiction visible à la Figure \ref{fig:iris:JRip}. Nous pouvons y voir que le modèle fait ses prédictions en fonction de la longueur des pétales (axe X) sauf pour les classes \textit{iris-versicolor} où la largeur des pétales intervient également.\\
 			
 			Un petit coup d'œil dans l'\textit{explorer} de \textit{Weka} nous permet de savoir quelles sont les règles de prédiction utilisées par \textit{JRip}. Ces règles sont les suivantes:
 			
@@ -358,7 +360,7 @@
 			
 			\subsubsection*{Question 17.3.9}
 			
-			Les règles utilisées par \textit{JRip} lors de la question précédente donnent de bonnes prédictions uniquement si elles sont exécutées dans le bon ordre. Voici un ensemble de règles équivalentes dont le résultat ne dépend pas de l'ordre dans lesquelles on les exécutent:
+			Les règles utilisées par \textit{JRip} lors de la question précédente donnent de bonnes prédictions uniquement si elles sont exécutées dans le bon ordre. Voici un ensemble de règles équivalentes dont le résultat ne dépend pas de l'ordre dans lequel on les exécutent:
 			
 			\begin{itemize}
 				\item (petallength $\le$ 1.9) $\implies$ class=Iris-setosa
@@ -383,7 +385,7 @@
 			
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=.8\textwidth]{iris_J48_tree}
+				\includegraphics[width=\textwidth]{iris_J48_tree}
 				\caption{Arbre généré par J48 afin de prédire le type d'iris}
 				\label{fig:iris:J48:tree}
 			\end{figure}
@@ -393,22 +395,22 @@
 		   	
 		   	Pour résoudre cette question, nous devons jouer avec les arguments du modèle \textit{J48} afin d'obtenir 3, 2, puis une zone dans les prédictions. La Figure \ref{fig:iris:J48:zones} résume les résultats obtenus.
 		   	
-		   	\begin{figure}[!]
+		   	\begin{figure}[h]
 		   		\centering
 		   		\begin{subfigure}{.333\textwidth}
 		   			\centering
 		   			\includegraphics[width=.9\textwidth]{iris_J48_3zones}
-		   			\caption{7 à 49 instances par feuilles}
+		   			\caption{7 à 49 instances par feuille}
 		   		\end{subfigure}%				
 		   		\begin{subfigure}{.333\textwidth}
 		   			\centering
 		   			\includegraphics[width=.9\textwidth]{iris_J48_2zones}
-		   			\caption{50 à 75 instances par feuilles}
+		   			\caption{50 à 75 instances par feuille}
 		   		\end{subfigure}%
 		   		\begin{subfigure}{.333\textwidth}
 		   			\centering
 		   			\includegraphics[width=.9\textwidth]{iris_J48_1zone}
-		   			\caption{76 à 150 instances par feuilles}
+		   			\caption{76 à 150 instances par feuille}
 		   		\end{subfigure}
 		   		
 		   		\caption{Variation du nombre de zones des prédictions du jeu de données \textit{Iris.arff} en fonction du paramètre \textit{minNumObj} de J48}
@@ -421,7 +423,7 @@
 			
 			Cette question porte sur la discrétisation non-supervisée des données. Il nous est donc demandé de discrétiser les données du fichier \textit{glass.arff} selon deux méthodes différentes : \textit{equal-width} et \textit{equal-frequency}. La Figure \ref{fig:glass:disc} montre les résultats ainsi obtenus.\\
 			
-			La méthode \textit{equal-width} discrétise les données en créant des intervalles de mêmes longueurs. Il est donc normal que nous voyons apparaître de gros écart de "population" entre les différents intervalles.\\
+			La méthode \textit{equal-width} discrétise les données en créant des intervalles de même longueur. Il est donc normal que nous voyons apparaître de gros écarts de "population" entre les différents intervalles.\\
 			
 			La méthode \textit{equal-frequency} discrétise les données en créant des intervalles peuplés plus ou moins de la même façon. Il est donc normal que les écarts  de "population" entre intervalles sont très petits. Nous voyons tout de même quelques intervalles ayant de gros écarts avec les autres. Cela s'explique car ces pics sont causés par un grand nombre d'instances ayant la même valeur d'attribut. Il est donc normal qu'il soit impossible de placer ces instances dans des intervalles différents.
 			
@@ -448,7 +450,7 @@
 			
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=.8\textwidth]{iris_disc}
+				\includegraphics[width=\textwidth]{iris_disc}
 				\caption{Discrétisation supervisée du fichier \textit{iris.arff}}
 				\label{fig:iris:disc}
 			\end{figure}
@@ -456,11 +458,11 @@
 			
 			\subsubsection*{Question 17.4.3}
 			
-			Cette question demande la même chose que la précédente sauf qu'on utilise cette fois le fichier \textit{glass.arff}. Nous remarquons que certains attributs ne comptent qu'un seul intervalle. Ces attributs (\textit{Fe} et \textit{Si}) sont en fait de très mauvais candidats pour effectuer une classification comme nous l'avons déjà remarqué pendant la question 17.2.4. 
+			Cette question demande la même chose que la précédente sauf qu'on utilise cette fois le fichier \textit{glass.arff}. Nous remarquons que certains attributs ne comptent qu'un seul intervalle. Ces attributs (\textit{Fe} et \textit{Si}) sont en fait de très mauvais candidats pour effectuer une classification comme nous l'avons déjà remarqué à question 17.2.4. 
 			
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=.8\textwidth]{glass_disc_sup}
+				\includegraphics[width=\textwidth]{glass_disc_sup}
 				\caption{Discrétisation supervisée du fichier \textit{glass.arff}}
 				\label{fig:glass:disc:sup}
 			\end{figure}
@@ -472,14 +474,14 @@
 			
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=.8\textwidth]{glass_disc_bin}
+				\includegraphics[width=\textwidth]{glass_disc_bin}
 				\caption{Discrétisation supervisée du fichier \textit{glass.arff} avec le paramètre \textit{makeBinary} à vrai}
 				\label{fig:glass:disc:bin}
 			\end{figure}
 			
 			\subsubsection*{Question 17.4.8}
 			
-			Pour cette question, nous devions trouver les 4 attributs les plus pertinents dans le but d'une classification. Nos résultats sont les suivants par ordre décroissant de pertinence:
+			Cette question porte sur l'outil de sélection d'attribut du logiciel \textit{Weka}. Nous devons trouver les 4 attributs les plus pertinents du jeu de données \textit{labor.arff} dans le but d'une classification. Nos résultats sont les suivants par ordre décroissant de pertinence:
 			
 			\begin{enumerate}
 				\item \textit{wage-increase-first-year}
@@ -492,9 +494,9 @@
 		
 			\subsubsection*{Question 17.5.1}
 			
-			Pour résoudre cette question, nous commençons par créer un document texte sur lequel nous appliquerons le filtre \textit{StringToWordVector}. Le document texte que nous avons créer contient les mêmes données que la Table \ref{tab:oil:training}.\\
+			Pour résoudre cette question, nous commençons par créer un document texte sur lequel nous appliquons le filtre \textit{StringToWordVector}. Le document texte que nous avons créé contient les mêmes données que la Table \ref{tab:oil:training}.\\
 			
-			Ce filtre créer un jeu de données à partir de notre document texte. Il créer un attribut par mot, soit un total de 34 pour notre exemple. Ensuite, nous mettons le paramètre \textit{minTermFreq} de ce filtre à 2. Cela implique qu'il ne crée un nouvel attribut que pour un mot seulement si il apparaît au moins 2 fois dans le texte.
+			Ce filtre crée un jeu de données à partir de notre document texte. Il crée un attribut par mot, soit un total de 34 pour notre exemple. Ensuite, nous mettons le paramètre \textit{minTermFreq} de ce filtre à 2. Cela implique qu'il ne crée un nouvel attribut pour un mot seulement s'il apparaît au moins 2 fois dans le texte.
 				
 			\begin{table}[h]
 				\centering
@@ -519,7 +521,7 @@
 			
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=.5\textwidth]{text_tree}
+				\includegraphics[width=.7\textwidth]{text_tree}
 				\caption{Arbre de classification produit par \textit{J48}}
 				\label{fig:text:training:tree}
 			\end{figure}
@@ -556,7 +558,7 @@
 			
 			  Pour cette question, nous devons construire deux modèles en utilisant \textit{J48} et \textit{NaiveBayesMultinomial} pour deux jeux de données textuelles. Le premier de ces deux jeu de données a pour but d'identifier les textes qui parlent de maïs (\textit{ReutersCorn-train.arff}) tandis que le but du second est d'identifier les textes qui parlent de graines (\textit{ReutersGrain-train.arff}).\\
 			  
-			  La Table \ref{tab:corn} résume les résultats obtenus pour les deux classificateurs sur le premier jeu de données. Nous voyons que \textit{J48} est meilleur que \textit{NaiveBayesMultinomial} sur tous les plans. Il est donc évident que pour ce jeu de données, \textit{J48} est le classificateur que nous choisirions.\\ 
+			  La Table \ref{tab:corn} résume les résultats obtenus pour les deux classificateurs sur le premier jeu de données. Nous voyons que \textit{J48} est meilleur que \textit{NaiveBayesMultinomial} sur tous les plans. Il est donc évident que pour ce jeu de données, \textit{J48} est le classificateur que nous choisissons.\\ 
 			  
 			  \begin{table}[h]
 			  	\centering
@@ -574,7 +576,7 @@
 		  		\end{tabular}
 			  \end{table}
 			  
-			  La Table \ref{tab:grain} montre les résultats des deux classificateurs sur le second jeu de données. Ici encore nous voyons que \textit{J48} est le meilleur des deux classificateurs. Toutefois, nous remarquons que \textit{NaiveBayesMultinomial} a une meilleure précision en moyenne. Cela veut dire que le modèle fait peu d'erreur lorsqu'il doit prédire la classe d'une instance. Cependant, il s'agit là d'une moyenne. En effet, en regardant les résultats de plus près, nous remarquons que ce modèle à en fait une très mauvaise précision ($21.4 \%$) pour ce qui est de repérer les textes qui parlent de graines. Cela conforte donc notre choix de \textit{J48}.
+			  La Table \ref{tab:grain} montre les résultats des deux classificateurs sur le second jeu de données. Ici encore nous voyons que \textit{J48} est le meilleur des deux classificateurs. Toutefois, nous remarquons que \textit{NaiveBayesMultinomial} a une meilleure précision en moyenne. Cela veut dire que le modèle fait peu d'erreur lorsqu'il doit prédire la classe d'une instance. Cependant, il s'agit là d'une moyenne. En effet, en regardant les résultats de plus près, nous remarquons que ce modèle a en fait une très mauvaise précision ($21.4 \%$) pour ce qui est de repérer les textes qui parlent de graines. Cela conforte donc notre choix de \textit{J48}.
 			  
 			  \begin{table}[h]
 			  	\centering
@@ -615,13 +617,13 @@
    	
 	   	\subsection{Description du problème}
 	   	
-		   	Le problème consiste à concevoir un modèle capable de détecter les personnes potentiellement intéressées par la souscription d'une assurance caravane. Le but de cette tâche est d'envoyer une publicité ciblée sur ces personnes afin de réduire les coûts de celle-ci. Nous nous limiterons donc à l'envoie de 800 de ces publicités.\\
+		   	Le problème consiste à concevoir un modèle capable de détecter les personnes potentiellement intéressées par la souscription d'une assurance caravane. Le but de cette tâche est d'envoyer une publicité ciblée sur ces personnes afin de réduire les coûts de celle-ci. Nous nous limiterons donc à l'envoi de 800 de ces publicités.\\
 		   	
 		\subsection{Description des données}
 		   	
 		   	Pour concevoir ce modèle, nous possédons un fichier d'entraînement contenant les données "historiques" de 5822 personnes dont 348 ($\pm6\%$) possèdent une assurance caravane.\\
 		   	
-		   	Nous possédons également un fichier contenant les données de 4000 personnes parmi lesquelles nous aimerions envoyer les 800 courriers publicitaires. Nous nous attendons à ce que la même proportion de ces personnes soient intéressée par une assurance caravane que dans notre fichier "historique". Nous estimons donc que $6\%$ de ces 4000 personnes ($\pm240$) soient intéressées.
+		   	Nous possédons également un fichier contenant les données de 4000 personnes parmi lesquelles nous aimerions envoyer les 800 courriers publicitaires. Nous nous attendons à ce que la même proportion de ces personnes soient intéressées par une assurance caravane que dans notre fichier "historique". Nous estimons donc que $6\%$ de ces 4000 personnes ($\pm240$) soient intéressées.
 		   	
 		\subsection{Mesures importantes}
 		
@@ -631,25 +633,25 @@
 		
 			\subsubsection*{Extraction des données}
 			
-				Dans un premier temps, nous devons convertir les fichiers de données en format compatible pour le logiciel \textit{Weka}. Pour ce faire, nous utilisions un petit programme \textit{Python} écrit par un autre élève: Nico Salamone.
+				Dans un premier temps, nous devons convertir les fichiers de données en format compatible pour le logiciel \textit{Weka}. Pour ce faire, nous utilisons un petit programme \textit{Python} écrit par un autre élève: Nico Salamone.
 				
 			\subsubsection*{Sélection d'attributs}
 			
-				Afin de faire une sélection correcte des attributs du jeu de données, nous essayons plusieurs évaluateurs d'attributs afin d'être sûr de choisir la meilleure sélection d'attributs. Dans notre cas nous choisissons le modèle \textit{NaiveBayes} pour évaluer les sélections. Nous évaluerons l'efficacité d'une sélection selon les valeurs \textit{precision} et \textit{recall} de la classification pour la classe qui nous intéresse. La Table \ref{tab:select} résume les résultats obtenus pour les différentes sélections effectuées.
+				Afin de faire une sélection correcte des attributs du jeu de données, nous essayons plusieurs évaluateurs d'attributs afin d'être sûr de choisir la meilleure sélection d'attributs. Dans notre cas nous choisissons le modèle \textit{NaiveBayes} pour évaluer les sélections. Nous évaluons l'efficacité d'une sélection selon les valeurs \textit{precision} et \textit{recall} de la classification pour la classe qui nous intéresse. La Table \ref{tab:select} résume les résultats obtenus pour les différentes sélections effectuées.
 				
-				Vous trouverez ci-dessus un détail sur les différents évaluateurs d'attributs testés. 
+				Vous trouverez ci-dessous un détail sur les différents évaluateurs d'attributs testés. 
 				\\
 				
 				Dans un premier temps nous effectuons la classification sur la totalité des attributs afin d'avoir un point de comparaison. Nous lançons donc le test sur les 85 attributs.
 				
-				Ensuite, nous testons l'évaluateur \textit{CfsSubsetEval} qui est l'évaluateur par défaut. Il sélectionne les attributs suivants: \textbf{25,42,43,44,47,59,61,64,68,82}. Comme le montre la Table \ref{tab:select}, les résultats obtenus sont très médiocre.
+				Ensuite, nous testons l'évaluateur \textit{CfsSubsetEval} qui est l'évaluateur par défaut. Il sélectionne les attributs suivants: \textbf{25,42,43,44,47,59,61,64,68,82}. Comme le montre la Table \ref{tab:select}, les résultats obtenus sont très médiocres.
 				
 				L'évaluateur \textit{ConsistencySubsetEval} est légèrement meilleur mais n'est toujours pas satisfaisant. Il sélectionne les attributs suivant: \textbf{1,3,4,6,16,21,23,24,29,30,32,37,40,44,47,54,59,61,64,68}.
 				
-				Nous avons effectué plusieurs tests avec l'évaluateur \textit{GainRatioAttributeEval}. D'abord, nous avons sélectionné les attributs qui un ratio de gain supérieur à $0.01$. Cela nous a donné la sélection suivante: \textbf{82,61,47,85,64,68,86}. Malheureusement, une fois encore les résultats ne sont pas satisfaisant.\\
-				Nous avons ensuite sélectionné les attributs dont le ratio de gain est supérieur à $0$. Cela nous a donc donné la sélection suivante: \textbf{82,61 ,47 ,85 ,64 ,68 ,25 ,19 ,59 ,42 ,37 ,65 ,43 ,44 ,30 ,31 ,18 ,54 ,75 ,10 ,34 ,39 ,12 ,80 ,5 ,16 ,32 ,1 ,29 ,28 ,21 ,40 ,22 ,24 ,23 ,35 ,36 ,13 ,2 ,6 ,3 ,4 ,86}. Cette sélection donne de bons résultats mais sont toujours inférieur aux résultats obtenus en sélectionnant la totalité des attributs.
+				Nous avons effectué plusieurs tests avec l'évaluateur \textit{GainRatioAttributeEval}. D'abord, nous avons sélectionné les attributs qui ont un ratio de gain supérieur à $0.01$. Cela nous a donné la sélection suivante: \textbf{82,61,47,85,64,68,86}. Malheureusement, une fois encore les résultats ne sont pas satisfaisants.\\
+				Nous avons ensuite sélectionné les attributs dont le ratio de gain est supérieur à $0$. Cela nous a donc donné la sélection suivante: \textbf{82,61 ,47 ,85 ,64 ,68 ,25 ,19 ,59 ,42 ,37 ,65 ,43 ,44 ,30 ,31 ,18 ,54 ,75 ,10 ,34 ,39 ,12 ,80 ,5 ,16 ,32 ,1 ,29 ,28 ,21 ,40 ,22 ,24 ,23 ,35 ,36 ,13 ,2 ,6 ,3 ,4 ,86}. Cette sélection donne de bons résultats mais ils sont toujours inférieurs aux résultats obtenus en sélectionnant la totalité des attributs.
 				
-				Nous avons également testé d'autres évaluateurs mais nous ne les avons pas mentionné car ils sélectionnaient soit aucun soit tout les attributs.
+				Nous avons également testé d'autres évaluateurs mais nous ne les avons pas mentionnés car ils sélectionnaient soit aucun soit tout les attributs.
 				
 				\begin{table}[h]
 					\centering
@@ -672,17 +674,17 @@
 					\end{tabular}
 				\end{table}
 				
-				Au vu de ces résultats, nous pouvons dire que la sélection d'attributs n'améliore pas la classification de ce jeu de données. Nous notons toutefois que \textit{GainRatioAttributeEval} $>0$ constitue une alternative intéressante car bien qu'il a une valeur de \textit{recall} légèrement plus petite, sa valeur de \textit{precision} est légèrement plus grande. La sélection d'attribut qu'il propose pourrait donc nous permettre de ne pas dépasser le seuil des 800 courriers publicitaires à envoyer. Peut-être même que l'intersection des solutions de ces deux sélections nous permettrais d'avoir de meilleurs résultats.
+				Au vu de ces résultats, nous pouvons dire que la sélection d'attributs n'améliore pas la classification de ce jeu de données. Nous notons toutefois que \textit{GainRatioAttributeEval} $>0$ constitue une alternative intéressante car bien qu'il aie une valeur de \textit{recall} légèrement plus petite, sa valeur de \textit{precision} est légèrement plus grande. La sélection d'attribut qu'il propose pourrait donc nous permettre de ne pas dépasser le seuil des 800 courriers publicitaires à envoyer.
 				
 			\subsection{Discussion sur trois classificateurs}
 			
-				Maintenant que nous avons décidé quelle sous-ensemble d'attributs nous utiliserons, nous devons choisir le classificateur qui maximise nos valeurs de mesures d'efficacité à savoir \textit{precision} et \textit{recall}. Afin de tester ces classificateurs, nous testons les modèles grâce à un test \textit{10-folds cross-validation}. La Table \ref{tab:classificateur} résume les résultats obtenus par les trois classificateurs que nous considérons. Vous trouverez également ci-dessous une discussion à propos de ceux-ci.
+				Maintenant que nous avons décidé quel sous-ensemble d'attributs nous utiliserons, nous devons choisir le classificateur qui maximise nos valeurs de mesures d'efficacité à savoir \textit{precision} et \textit{recall}. Afin de tester ces classificateurs, nous testons les modèles grâce à un test \textit{10-folds cross-validation}. La Table \ref{tab:classificateur} résume les résultats obtenus par les trois classificateurs que nous considérons. Vous trouverez également ci-dessous une discussion à propos de ceux-ci.
 				
-				Le classificateur \textit{NaiveBayes} a été retenu car c'est celui qui \textit{a priori} paraissait être le meilleur. C'est pour cette raison que nous l'avions utilisé afin de choisir une sélection pertinente lors du précédent chapitre.\\
+				Le classificateur \textit{NaiveBayes} a été retenu car, \textit{a priori}, il parait être le meilleur. C'est pour cette raison que nous l'avions utilisé à la section précédente afin de choisir une sélection pertinente.\\
 				
-				Nous avons également retenu \textit{IBK} car nous l'avions utilisé à plusieurs reprises lors des exercices que nous avons fait dans le but de prendre en main le logiciel \textit{Weka}. Nous l'avons donc testé pour différentes valeurs de \textit{KNN}. Malheureusement, les résultats obtenus sont de plus en plus mauvais quand \textit{KNN} augmente. Les résultats que nous avons retenus dans la Table \ref{tab:classificateur} sont ceux pour \textit{KNN} égal à 1 (qui sont les meilleurs).\\
+				Nous avons également retenu \textit{IBK} car nous l'avions utilisé à plusieurs reprises lors des exercices que nous avons faits dans le but de prendre en main le logiciel \textit{Weka}. Nous l'avons donc testé pour différentes valeurs de \textit{KNN}. Malheureusement, les résultats obtenus sont de plus en plus mauvais quand \textit{KNN} augmente. Les résultats que nous avons retenus dans la Table \ref{tab:classificateur} sont ceux pour \textit{KNN} égal à 1 (qui sont les meilleurs).\\
 				
-				Finalement, nous considérons \textit{J48} car nous voulions essayer un classificateur basé sur les arbres et nous l'avions utilisé à plusieurs reprises pendant les exercices. L'arbre qu'il construit ne contient qu'une feuille qui classe toutes les instances dans "pas intéressé par une assurance caravane". Pour éviter cela, nous faisons en sorte que cet arbre ne soit pas élagué. Ce sont les résultats de cet arbre non-élagué qui se retrouvent dans la Table \ref{tab:classificateur}.		
+				Finalement, nous considérons \textit{J48} car nous voulons essayer un classificateur basé sur les arbres et nous l'avons utilisé à plusieurs reprises pendant les exercices. L'arbre qu'il construit ne contient qu'une feuille qui classe toutes les instances dans "pas intéressé par une assurance caravane". Pour éviter cela, nous faisons en sorte que cet arbre ne soit pas élagué. Ce sont les résultats de cet arbre non-élagué qui se retrouvent dans la Table \ref{tab:classificateur}.		
 				
 				
 				\begin{table}[h]
@@ -704,13 +706,13 @@
 				
 			\subsection{Choix du classificateur}
           	
-	          	A la vue des résultats obtenus dans la section précédente, nous pouvons aisément justifier notre choix de \textit{NaiveBayes} en tant que classificateur. En effet, c'est lui qui a la plus grande valeur de \textit{recall} ce qui veut dire que c'est lui qui détecte le plus de "personnes intéressées par une assurance caravane". Malheureusement, sa valeur de \textit{precision} n'est pas très bonne, il est donc très probable que nous devrions sélectionner 800 instances parmi celles que notre modèle sélectionne. Nous n'aurons hélas aucun autre moyen de les sélectionner que de le faire aléatoirement.
+	          	A la vue des résultats obtenus dans la section précédente, nous pouvons aisément justifier notre choix de \textit{NaiveBayes} en tant que classificateur. En effet, c'est lui qui a la plus grande valeur de \textit{recall} ce qui veut dire que c'est lui qui détecte le plus de "personnes intéressées par une assurance caravane". Malheureusement, sa valeur de \textit{precision} n'est pas très bonne, il est donc très probable que nous devions sélectionner 800 instances parmi celles que notre modèle sélectionne. Heureusement, \textit{Weka} nous permet d'obtenir le coefficient de certitude du modèle pour chaque instance. Il nous suffit donc de ne sélectionner que les 800 instances pour lesquels le modèle est le plus sûr.
 	          
 			\subsection{Capacité descriptive du classificateur}
 			
 				Malheureusement, le modèle \textit{NaiveBayes} ne nous indique pas clairement comment il sélectionne les "personnes intéressées par une assurance caravane". Nous pouvons par contre savoir quels attributs sont ceux qui influencent le plus la décision qu'il prend. Pour cela, nous devons interpréter les données que \textit{Weka} nous donne sur le modèle produit.\\
 				
-				Pour chaque attribut, \textit{NaiveBayes} associe une moyenne est un écart type par classe (ce qui nous donne donc une fonction gaussienne par classe et par attribut). Par la suite, pour classer une instance, il va parcourir la valeur de chacun de ses attributs et la comparer avec la moyenne et l'écart type qu'il a calculé pour chacune des classes. Sur base de ces comparaisons, le modèle va attribuer à cette instance la probabilité d'appartenir à chacune de ces classes. Finalement, la classe attribuée à l'instance sera celle qui aura obtenu la plus haute probabilité. Voici un exemple afin de clarifier les explications ci-dessus.\\
+				Pour chaque attribut, \textit{NaiveBayes} associe une moyenne et un écart type par classe (ce qui nous donne donc une fonction gaussienne par classe et par attribut). Par la suite, pour classer une instance, il va parcourir la valeur de chacun de ces attributs et la comparer avec la moyenne et l'écart type qu'il a calculé pour chacune des classes. Sur base de ces comparaisons, le modèle va attribuer à cette instance la probabilité d'appartenir à chacune de ces classes. Finalement, la classe attribuée à l'instance sera celle qui aura obtenu la plus haute probabilité. Voici un exemple afin de clarifier les explications ci-dessus.\\
 				
 				Considérons un jeu de données très simple ne possédant qu'un attribut: l'attribut \textit{ATT} avec ses valeurs de moyennes et d'écarts types:
 				\begin{center}
@@ -730,7 +732,7 @@
 					\text{Si } I_{ATT} \in [M_2 \pm ET_2] \implies I_{ATT} \in \text{Classe 2}
 				\]
 				
-				Il nous suffit donc de parcourir les moyennes et écarts types que le modèle a calculés pour chaque attribut et de regarder si ces valeurs se distinguent fortement entre classes. Si c'est le cas, c'est que cet attribut influence beaucoup le choix de la classe à attribuer.\\
+				Il nous suffit donc de parcourir les moyennes et écarts types que le modèle a calculés pour chaque attribut et de regarder si ces valeurs se distinguent fortement entre classe. Si c'est le cas, c'est que cet attribut influence beaucoup le choix de la classe à attribuer.\\
 				
 				Dans notre cas, la Table \ref{tab:cap_desc} montre l'attribut le plus significatif pour notre modèle.	Nous remarquons cependant que les intervalles induits par les moyennes et écarts types de cet attribut se chevauchent et compliquent donc la décision que doit prendre notre modèle. Ce phénomène touche tous les attributs ce qui explique pourquoi notre modèle a tant de mal à classifier notre jeu de données. 
 
@@ -751,17 +753,17 @@
 			
 				Afin de sélectionner les instances qui nous intéresse, nous allons lancer notre classificateur sur le jeu de données \textit{ticeval2000.arff} en demandant à \textit{Weka} d'écrire pour chaque instance la classe à laquelle il pense qu'elle appartient ainsi que la probabilité que cette classe soit effectivement correcte. Nous extrairons ensuite les 800 instances appartenant à la classe "est intéressé par une assurance caravane" qui ont la plus grande probabilité d'être vraie.\\
 				
-				Nous devrons faire cette extraction nous-même car \textit{Weka} ne permet pas d'exporter directement ses résultats. Nous écrirons donc un script \textit{Python} pour cette tâche. L'étape suivante sera de comparer ces résultats avec le fichier de correction afin d'évaluer notre score.
+				Nous devons faire cette extraction nous-même car \textit{Weka} ne permet pas d'exporter directement ces résultats. Nous écrivons donc un script \textit{Python} pour cette tâche. L'étape suivante sera de comparer ces résultats avec le fichier de correction afin d'évaluer notre score.
 				
 			\subsection{Score obtenu}
 			
-				En comparant nos résultats avec le fichier correctif fourni, nous voyons que nous repérons correctement 97 instances sur les 240 que nous estimions présente dans le fichier. Pour avoir un point de comparaison, \cite[Putten]{CoIlChallenge} indique que le vainqueur de cette compétition avait un score de 121. \cite[Putten]{CoIlChallenge} remarque également que le score moyen des participants européens est de 98. Nous pouvons donc dire que nos résultats sont relativement bon.
+				En comparant nos résultats avec le fichier correctif fourni, nous voyons que nous repérons correctement 97 instances sur les 240 que nous estimions présentes dans le fichier. Pour avoir un point de comparaison, \cite[Putten]{CoIlChallenge} indique que le vainqueur de cette compétition a un score de 121. \cite[Putten]{CoIlChallenge} remarque également que le score moyen des participants européens est de 98. Nous pouvons donc dire que nos résultats sont relativement bon.
 				
 			\subsection{Discussion des résultats}
 			
-				Comme nous l'avons vu dans la section précédente, nos résultats sont relativement bon par rapport aux participants de la compétition. Mais le seul moyen de savoir ce que notre modèle prédictif vaut et de le comparer à un modèle aléatoire. \cite[Putten]{CoIlChallenge} avance qu'un modèle aléatoire aurait un score de 42. Notre score étant de 97, soit plus du double, nous pouvons donc conclure que notre modèle est significativement meilleure qu'une sélection aléatoire. Dans le cas contraire, notre modèle aurait été bon à jeter à la poubelle.\\
+				Comme nous l'avons vu dans la section précédente, nos résultats sont relativement bons par rapport aux participants de la compétition. Mais le seul moyen de savoir ce que notre modèle prédictif vaut est de le comparer à un modèle aléatoire. \cite[Putten]{CoIlChallenge} avance qu'un modèle aléatoire aurait un score de 42. Notre score étant de 97, soit plus du double, nous pouvons donc conclure que notre modèle est significativement meilleur qu'une sélection aléatoire. Dans le cas contraire, notre modèle aurait été bon à jeter à la poubelle.\\
 				
-			\section{Conclusion}
+			\subsection{Conclusion}
 			
 				Pour conclure, nous pouvons dire que nous avons réussi à construire un modèle de prédiction relativement bon grâce à l'outil \textit{Weka}. De plus, nous avons atteint ce résultat sans utiliser de technique très élaborée étant donné que nous n'avons fait que construire un modèle du type \textit{Naïve Bayes} sans pré-traiter les données. Dès lors, nous pouvons nous demander si des efforts supplémentaires valent le coup d'être fournis étant donné le peu de valeur ajoutée que cela apporte. En effet, nous avons obtenu un score de 97 contre 121 pour le vainqueur de la compétition.\\
 				
